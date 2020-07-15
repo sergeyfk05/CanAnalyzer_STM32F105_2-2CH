@@ -1,6 +1,6 @@
 #pragma once
 #include <stm32f105xc.h>
-#define COMMAND_ID 1
+#define DeviceInfo_COMMAND_ID 1
 
 //package's id - 1
 namespace DeviceInfo

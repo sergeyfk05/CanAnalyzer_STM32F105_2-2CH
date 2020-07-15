@@ -9,6 +9,9 @@ namespace Channels
 		state = CANState::Closed;
 		
 		GPIO_InitTypeDef GPIO_InitStruct = { 0 };
+		__HAL_RCC_AFIO_CLK_ENABLE();
+		__HAL_RCC_PWR_CLK_ENABLE();
+		__HAL_RCC_GPIOB_CLK_ENABLE();
 		__HAL_RCC_CAN1_CLK_ENABLE();
 		
 		GPIO_InitStruct.Pin = GPIO_PIN_8;
@@ -39,7 +42,11 @@ namespace Channels
 		
 		CANState targetState = isListenOnly ? CANState::OpenedListenOnly :  CANState::OpenedNormal;
 		if (this->bitrate == bitrate && this->state == targetState)
+		{
+			GetChannelInfo::NotifyChanges(this->index, PushToUsbBuffer);
 			return;
+		}
+			
 		
 		hcan.Init.Mode = isListenOnly ? CAN_MODE_LOOPBACK : CAN_MODE_NORMAL;
 		
@@ -55,14 +62,17 @@ namespace Channels
 		this->bitrate = bitrate;
 		this->state = targetState;
 		
-		ChannelInfo::NotifyChanges(this->index, PushToUsbBuffer);
-		//ChannelInfo::NotifyChanges(this->index, nullptr);
+		GetChannelInfo::NotifyChanges(this->index, PushToUsbBuffer);
 	}
 	
 	void CAN1Interface::Close()
 	{
-		HAL_CAN_DeInit(&hcan);
-		this->state = CANState::Closed;
+		if (HAL_CAN_DeInit(&hcan) == HAL_OK)
+		{
+			this->state = CANState::Closed;
+			GetChannelInfo::NotifyChanges(this->index, PushToUsbBuffer);
+		}
+
 	}
 	
 	

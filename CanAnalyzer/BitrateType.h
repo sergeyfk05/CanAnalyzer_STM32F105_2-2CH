@@ -1,4 +1,6 @@
 #pragma once
+#define BITRATETYPE_MIN_VALUE 0
+#define BITRATETYPE_MAX_VALUE 10
 
 namespace Channels
 {

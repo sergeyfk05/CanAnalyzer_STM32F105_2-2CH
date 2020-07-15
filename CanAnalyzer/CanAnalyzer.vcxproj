@@ -57,12 +57,13 @@
   <ItemGroup>
     <ClCompile Include="CAN1Interface.cpp" />
     <ClCompile Include="CanAnalyzer.cpp" />
-    <ClCompile Include="ChannelInfo.cpp" />
+    <ClCompile Include="GetChannelInfo.cpp" />
     <ClCompile Include="CommandSelector.cpp" />
     <ClCompile Include="DeviceInfo.cpp" />
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="ICANChannel.cpp" />
     <ClCompile Include="PacketQueue.cpp" />
+    <ClCompile Include="SetChannelInfo.cpp" />
     <ClCompile Include="usbd_cdc_if.cpp" />
     <ClCompile Include="usbd_conf.c" />
     <ClCompile Include="usbd_desc.c" />
@@ -71,12 +72,13 @@
     <ClInclude Include="CAN1Interface.h" />
     <ClInclude Include="CanAnalyzer.h" />
     <ClInclude Include="CANState.h" />
-    <ClInclude Include="ChannelInfo.h" />
+    <ClInclude Include="GetChannelInfo.h" />
     <ClInclude Include="CommandSelector.h" />
     <ClInclude Include="DeviceInfo.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="ICANChannel.h" />
     <ClInclude Include="PacketQueue.h" />
+    <ClInclude Include="SetChannelInfo.h" />
     <ClInclude Include="USBPacketData.h" />
     <None Include="stm32.props" />
     <ClCompile Include="$(BSP_ROOT)\STM32F1xxxx\StartupFiles\startup_stm32f105xc.c" />

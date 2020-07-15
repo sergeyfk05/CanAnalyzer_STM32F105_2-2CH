@@ -1,15 +1,15 @@
 #pragma once
 #include <stm32f105xc.h>
-//#include <CanAnalyzer.h>
 #include <ICANChannel.h>
-#define COMMAND_ID 2
+#include <Helpers.h>
+#define GetChannelInfo_COMMAND_ID 2
 
 
 
-extern Channels::ICANChannel* CanChannels[1];
+extern Channels::ICANChannel* CanChannels[CHANNELS_COUNT];
 extern uint8_t CanChannelsCount;
 
-namespace ChannelInfo
+namespace GetChannelInfo
 {
 	struct Input
 	{
@@ -22,7 +22,7 @@ namespace ChannelInfo
 		uint8_t commandId;
 		uint8_t channelId : 3;
 		uint8_t status : 3;
-		uint16_t bitrate : 10;
+		uint8_t bitrate : 4;
 	};
 	
 	bool Operate(uint8_t *Buf, uint8_t Len, void(*transmit)(uint8_t *Buf, uint8_t Len));

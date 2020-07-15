@@ -4,8 +4,7 @@
 #include <ICANChannel.h>
 #include <BitrateType.h>
 #include <CANState.h>
-#include <ChannelInfo.h>
-//#include <CanAnalyzer.h>
+#include <GetChannelInfo.h>
 #include <Helpers.h>
 
 namespace Channels

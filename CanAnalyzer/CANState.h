@@ -1,4 +1,6 @@
 #pragma once
+#define CANSTATE_MIN_VALUE 0
+#define CANSTATE_MAX_VALUE 2
 
 namespace Channels
 {

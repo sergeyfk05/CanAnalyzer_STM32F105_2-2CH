@@ -573,9 +573,6 @@
     <ClCompile Include="DeviceInfo.cpp">
       <Filter>Source files\Protocol\PackageHandlers</Filter>
     </ClCompile>
-    <ClCompile Include="ChannelInfo.cpp">
-      <Filter>Source files\Protocol\PackageHandlers</Filter>
-    </ClCompile>
     <ClCompile Include="CommandSelector.cpp">
       <Filter>Source files\Protocol</Filter>
     </ClCompile>
@@ -588,6 +585,12 @@
     <ClCompile Include="Helpers.cpp">
       <Filter>Source files\Models</Filter>
     </ClCompile>
+    <ClCompile Include="GetChannelInfo.cpp">
+      <Filter>Source files\Protocol\PackageHandlers</Filter>
+    </ClCompile>
+    <ClCompile Include="SetChannelInfo.cpp">
+      <Filter>Source files\Protocol\PackageHandlers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="USBPacketData.h">
@@ -597,9 +600,6 @@
       <Filter>Header files\Models</Filter>
     </ClInclude>
     <ClInclude Include="DeviceInfo.h">
-      <Filter>Header files\Protocol\PackageHandlers</Filter>
-    </ClInclude>
-    <ClInclude Include="ChannelInfo.h">
       <Filter>Header files\Protocol\PackageHandlers</Filter>
     </ClInclude>
     <ClInclude Include="CommandSelector.h">
@@ -622,6 +622,12 @@
     </ClInclude>
     <ClInclude Include="Helpers.h">
       <Filter>Header files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="GetChannelInfo.h">
+      <Filter>Header files\Protocol\PackageHandlers</Filter>
+    </ClInclude>
+    <ClInclude Include="SetChannelInfo.h">
+      <Filter>Header files\Protocol\PackageHandlers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

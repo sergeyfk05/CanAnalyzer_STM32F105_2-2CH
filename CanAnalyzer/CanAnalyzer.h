@@ -6,7 +6,7 @@
 #include <CAN1Interface.h>
 #include <Helpers.h>
 
-#define CHANNELS_COUNT 1
+
 
 
 #ifdef __cplusplus
