@@ -6,7 +6,12 @@ int main(void)
 	HAL_Init();
 	SystemClock_Config();
 	
-	CanChannels[0] = new Channels::CAN1Interface(0);
+	//HAL_Delay(5000);
+	indicators[0] = new Led2Indicator();
+	indicators[1] = new Led1Indicator();
+	CanChannels[0] = new Channels::CAN1Interface(0, indicators[0]);
+	
+
 	
 	USBD_Init(&USBD_Device, &VCP_Desc, 0);
 
@@ -15,18 +20,24 @@ int main(void)
 	USBD_Start(&USBD_Device);
 	
 	while (true)
-	{
-		
+	{		
 		USBTransmitInfinityLoop();
-		USBRecieveInfinityLoop();
-
-		
-
+		USBRecieveInfinityLoop();	
 	}
 
 	
 }
 
+extern "C" void TIM2_IRQHandler()
+{
+	HAL_TIM_IRQHandler(&htim2);
+	
+	if (indicators[0] != nullptr)
+		indicators[0]->PeriodicCallback();
+	
+	if (indicators[1] != nullptr)
+		indicators[1]->PeriodicCallback();
+}
 
 void SysTick_Handler(void)
 {
@@ -48,7 +59,7 @@ void USBTransmitInfinityLoop(void)
 		return;
 			
 	//Wait for previous transfer
-	if (((USBD_CDC_HandleTypeDef *)USBD_Device.pClassData)->TxState)
+	if(((USBD_CDC_HandleTypeDef *)USBD_Device.pClassData)->TxState)
 		return;
 	
 	USBD_CDC_SetTxBuffer(&USBD_Device, data.Data, data.Size);
@@ -71,4 +82,12 @@ void USBRecieveInfinityLoop(void)
 	bool(*command)(uint8_t*, uint8_t, void(*)(uint8_t*, uint8_t));
 	command = SelectCommand(data.Data);
 	command(data.Data, data.Size, &PushToUsbBuffer);
+}
+
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
+{
+	//	if (hcan->Instance == CAN1)
+	//	{
+	//		CanChannels[0]->ReceiveHandler();
+	//	}
 }

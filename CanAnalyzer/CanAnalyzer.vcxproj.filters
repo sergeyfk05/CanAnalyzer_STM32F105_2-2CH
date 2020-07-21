@@ -64,6 +64,12 @@
     <Filter Include="Source files\Models\Channels">
       <UniqueIdentifier>{b0823021-887b-4b9c-89a7-23a2821ff51d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header files\Models\Indicators">
+      <UniqueIdentifier>{3b033c2c-dc15-4326-947e-68628e4172db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\Models\Indicators">
+      <UniqueIdentifier>{e793c159-274e-48fe-b02c-9236c4757248}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CanAnalyzer.cpp">
@@ -591,6 +597,27 @@
     <ClCompile Include="SetChannelInfo.cpp">
       <Filter>Source files\Protocol\PackageHandlers</Filter>
     </ClCompile>
+    <ClCompile Include="TransmitCanAData.cpp">
+      <Filter>Source files\Protocol\PackageHandlers</Filter>
+    </ClCompile>
+    <ClCompile Include="TransmitCanBData.cpp">
+      <Filter>Source files\Protocol\PackageHandlers</Filter>
+    </ClCompile>
+    <ClCompile Include="ReceiveCanAData.cpp">
+      <Filter>Source files\Protocol\PackageHandlers</Filter>
+    </ClCompile>
+    <ClCompile Include="ReceiveCanBData.cpp">
+      <Filter>Source files\Protocol\PackageHandlers</Filter>
+    </ClCompile>
+    <ClCompile Include="Led1Indicator.cpp">
+      <Filter>Source files\Models\Indicators</Filter>
+    </ClCompile>
+    <ClCompile Include="LedIndicator.cpp">
+      <Filter>Source files\Models\Indicators</Filter>
+    </ClCompile>
+    <ClCompile Include="Led2Indicator.cpp">
+      <Filter>Source files\Models\Indicators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="USBPacketData.h">
@@ -628,6 +655,30 @@
     </ClInclude>
     <ClInclude Include="SetChannelInfo.h">
       <Filter>Header files\Protocol\PackageHandlers</Filter>
+    </ClInclude>
+    <ClInclude Include="TransmitCanAData.h">
+      <Filter>Header files\Protocol\PackageHandlers</Filter>
+    </ClInclude>
+    <ClInclude Include="TransmitCanBData.h">
+      <Filter>Header files\Protocol\PackageHandlers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReceiveCanAData.h">
+      <Filter>Header files\Protocol\PackageHandlers</Filter>
+    </ClInclude>
+    <ClInclude Include="ReceiveCanBData.h">
+      <Filter>Header files\Protocol\PackageHandlers</Filter>
+    </ClInclude>
+    <ClInclude Include="IIndicator.h">
+      <Filter>Header files\Models\Indicators</Filter>
+    </ClInclude>
+    <ClInclude Include="LedIndicator.h">
+      <Filter>Header files\Models\Indicators</Filter>
+    </ClInclude>
+    <ClInclude Include="Led1Indicator.h">
+      <Filter>Header files\Models\Indicators</Filter>
+    </ClInclude>
+    <ClInclude Include="Led2Indicator.h">
+      <Filter>Header files\Models\Indicators</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

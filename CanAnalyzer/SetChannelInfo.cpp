@@ -4,7 +4,6 @@ using namespace Channels;
 bool SetChannelInfo::Operate(uint8_t *Buf, uint8_t Len, void(*transmit)(uint8_t *Buf, uint8_t Len))
 { 
 	//check arguments
-	uint8_t d = sizeof(Input);
 	if((*Buf != SetChannelInfo_COMMAND_ID) || (Len != sizeof(Input)))
 		return false;
 	

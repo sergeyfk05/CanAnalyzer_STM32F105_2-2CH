@@ -17,6 +17,12 @@ bool(*SelectCommand(uint8_t *Buf))(uint8_t*, uint8_t, void(*)(uint8_t*, uint8_t)
 	case 3: 
 		command = SetChannelInfo::Operate;
 		break;
+	case 4: 
+		command = TransmitCanAData::Operate;
+		break;
+	case 5: 
+		command = TransmitCanBData::Operate;
+		break;
 	default: 
 		command = nullptr;
 		break;

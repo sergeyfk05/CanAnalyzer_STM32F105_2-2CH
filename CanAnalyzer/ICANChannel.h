@@ -11,6 +11,8 @@ namespace Channels
 	public:
 		virtual void Open(BitrateType bitrate = BitrateType::kpbs500, bool isListenOnly = true) = 0;
 		virtual void Close() = 0;
+		virtual void Transmit(CAN_TxHeaderTypeDef Header, uint8_t aData[]) = 0;
+		virtual void ReceiveHandler() = 0;
 		BitrateType GetBitrateType();
 		CANState GetState();
 		

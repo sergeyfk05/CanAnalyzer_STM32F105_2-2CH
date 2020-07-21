@@ -5,8 +5,10 @@
 #define CHANNELS_COUNT 1
 
 
+extern TIM_HandleTypeDef htim2;
 extern PacketQueue* RecieveUSBQueue;
 extern PacketQueue* TransmitUSBQueue;
+//TIM_HandleTypeDef htim2;
 
 void PushToUsbBuffer(uint8_t *Buf, uint8_t Len);
 

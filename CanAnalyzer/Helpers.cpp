@@ -49,5 +49,31 @@ void SystemClock_Config(void)
 	/** Configure the Systick interrupt time 
 	*/
 	__HAL_RCC_PLLI2S_ENABLE();
+	
+	__HAL_RCC_TIM2_CLK_ENABLE();
+	HAL_NVIC_SetPriority(TIM2_IRQn, 0, 0);
+	HAL_NVIC_EnableIRQ(TIM2_IRQn);
+	
+	TIM_ClockConfigTypeDef sClockSourceConfig = { 0 };
+	TIM_MasterConfigTypeDef sMasterConfig = { 0 };
+
+	
+
+	htim2.Instance = TIM2;
+	htim2.Init.Prescaler = 47999;
+	htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+	htim2.Init.Period = 5;
+	htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+	htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+	HAL_TIM_Base_Init(&htim2);
+	
+	sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+	HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig);
+	
+	sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+	sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+	HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig);
+	
+	HAL_TIM_Base_Start_IT(&htim2);
 }
 
