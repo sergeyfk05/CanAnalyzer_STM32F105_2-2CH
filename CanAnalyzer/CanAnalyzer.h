@@ -4,6 +4,7 @@
 #include <CommandSelector.h>
 #include <ICANChannel.h>
 #include <CAN1Interface.h>
+#include <CAN2Interface.h>
 #include <Helpers.h>
 #include <IIndicator.h>
 #include <Led1Indicator.h>
@@ -28,7 +29,9 @@ extern "C"
 	extern PCD_HandleTypeDef hpcd;
 	void TIM2_IRQHandler();
 	void CAN1_RX0_IRQHandler();
-	Indicators::IIndicator* indicators[2];
+	void CAN2_RX0_IRQHandler();
+	void CAN2_RX1_IRQHandler();
+	Indicators::IIndicator* indicators[CHANNELS_COUNT];
 
 	
 #ifdef __cplusplus

@@ -14,10 +14,10 @@ using namespace Indicators;
 
 namespace Channels
 {	
-	class CAN1Interface : public ICANChannel
+	class CAN2Interface : public ICANChannel
 	{
 	public:
-		CAN1Interface(uint8_t index, IIndicator* indicator = nullptr);
+		CAN2Interface(uint8_t index, IIndicator* indicator = nullptr);
 		
 		void Open(BitrateType bitrate = BitrateType::kpbs500, bool isListenOnly = true);
 		void Close();
@@ -28,7 +28,7 @@ namespace Channels
 	private:
 		CAN_HandleTypeDef hcan;
 		CAN_FilterTypeDef canFilterConfig;
-		uint32_t txMailbox = CAN_TX_MAILBOX0;
+		uint32_t txMailbox = CAN_TX_MAILBOX1;
 		uint32_t rxMailbox = CAN_RX_FIFO0;
 		IIndicator* indicator;
 		

@@ -2,7 +2,7 @@
 #include <stm32f105xc.h>
 #include  <PacketQueue.h>
 #include <ICANChannel.h>
-#define CHANNELS_COUNT 1
+#define CHANNELS_COUNT 2
 
 
 extern TIM_HandleTypeDef htim2;

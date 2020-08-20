@@ -13,37 +13,37 @@ namespace Channels
 		switch (bitrate)
 		{
 		case BitrateType::kpbs10:
-			*prescaler = 200;
+			*prescaler = 150;
 			*timeSeg1 = CAN_BS1_13TQ;
 			*timeSeg2 = CAN_BS2_2TQ;
 			break;
 		case BitrateType::kpbs20:
-			*prescaler = 100;
+			*prescaler = 75;
 			*timeSeg1 = CAN_BS1_13TQ;
 			*timeSeg2 = CAN_BS2_2TQ;
 			break;
 		case BitrateType::kpbs50:
-			*prescaler = 40;
+			*prescaler = 30;
 			*timeSeg1 = CAN_BS1_13TQ;
 			*timeSeg2 = CAN_BS2_2TQ;
 			break;
 		case BitrateType::kpbs83:
-			*prescaler = 24;
+			*prescaler = 18;
 			*timeSeg1 = CAN_BS1_13TQ;
 			*timeSeg2 = CAN_BS2_2TQ;
 			break;
 		case BitrateType::kpbs100:
-			*prescaler = 20;
-			*timeSeg1 = CAN_BS1_13TQ;
-			*timeSeg2 = CAN_BS2_2TQ;
-			break;
-		case BitrateType::kpbs125:
 			*prescaler = 16;
 			*timeSeg1 = CAN_BS1_13TQ;
 			*timeSeg2 = CAN_BS2_2TQ;
 			break;
+		case BitrateType::kpbs125:
+			*prescaler = 12;
+			*timeSeg1 = CAN_BS1_13TQ;
+			*timeSeg2 = CAN_BS2_2TQ;
+			break;
 		case BitrateType::kpbs250:
-			*prescaler = 8;
+			*prescaler = 6;
 			*timeSeg1 = CAN_BS1_13TQ;
 			*timeSeg2 = CAN_BS2_2TQ;
 			break;
@@ -53,13 +53,13 @@ namespace Channels
 			*timeSeg2 = CAN_BS2_2TQ;
 			break;
 		case BitrateType::kpbs800:
-			*prescaler = 5;
-			*timeSeg1 = CAN_BS1_6TQ;
+			*prescaler = 3;
+			*timeSeg1 = CAN_BS1_8TQ;
 			*timeSeg2 = CAN_BS2_1TQ;
 			break;
 		case BitrateType::kpbs1000:
 			*prescaler = 2;
-			*timeSeg1 = CAN_BS1_13TQ;
+			*timeSeg1 = CAN_BS1_10TQ;
 			*timeSeg2 = CAN_BS2_2TQ;
 			break;
 		default:

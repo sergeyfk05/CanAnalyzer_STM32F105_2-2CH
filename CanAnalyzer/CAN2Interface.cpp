@@ -1,9 +1,9 @@
-#include <CAN1Interface.h>
+#include <CAN2Interface.h>
 
 namespace Channels
 {	
 	
-	CAN1Interface::CAN1Interface(uint8_t index, IIndicator* indicator)
+	CAN2Interface::CAN2Interface(uint8_t index, IIndicator* indicator)
 	{		
 		this->indicator = indicator;
 		this->index = index;
@@ -17,21 +17,21 @@ namespace Channels
 		__HAL_RCC_AFIO_CLK_ENABLE();
 		__HAL_RCC_PWR_CLK_ENABLE();
 		__HAL_RCC_GPIOB_CLK_ENABLE();
-		__HAL_RCC_CAN1_CLK_ENABLE();
+		__HAL_RCC_CAN2_CLK_ENABLE();
 		
-		GPIO_InitStruct.Pin = GPIO_PIN_8;
+		GPIO_InitStruct.Pin = GPIO_PIN_5;
 		GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
 		GPIO_InitStruct.Pull = GPIO_NOPULL;
 		HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-		GPIO_InitStruct.Pin = GPIO_PIN_9;
+		GPIO_InitStruct.Pin = GPIO_PIN_6;
 		GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
 		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
 		HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-		__HAL_AFIO_REMAP_CAN1_2();
+		__HAL_AFIO_REMAP_CAN2_ENABLE();
 		
-		hcan.Instance = CAN1;
+		hcan.Instance = CAN2;
 		hcan.Init.TimeTriggeredMode = DISABLE;
 		hcan.Init.AutoBusOff = DISABLE;
 		hcan.Init.AutoWakeUp = DISABLE;
@@ -40,7 +40,7 @@ namespace Channels
 		hcan.Init.TransmitFifoPriority = DISABLE;
 		
 		
-		canFilterConfig.FilterBank = 0;
+		canFilterConfig.FilterBank = 1;
 		canFilterConfig.FilterMode = CAN_FILTERMODE_IDMASK;
 		canFilterConfig.FilterScale = CAN_FILTERSCALE_32BIT;
 		canFilterConfig.FilterIdHigh = 0x0000;
@@ -49,17 +49,17 @@ namespace Channels
 		canFilterConfig.FilterMaskIdLow = 0x0000;
 		canFilterConfig.FilterFIFOAssignment = rxMailbox;
 		canFilterConfig.FilterActivation = ENABLE;
-		canFilterConfig.SlaveStartFilterBank = 14;
+		canFilterConfig.SlaveStartFilterBank = 15;
 		
-		HAL_NVIC_SetPriority(CAN1_RX0_IRQn, 0, 0);
-		HAL_NVIC_EnableIRQ(CAN1_RX0_IRQn);
-		HAL_NVIC_SetPriority(CAN1_RX1_IRQn, 0, 0);
-		HAL_NVIC_EnableIRQ(CAN1_RX1_IRQn);
+		HAL_NVIC_SetPriority(CAN2_RX0_IRQn, 0, 0);
+		HAL_NVIC_EnableIRQ(CAN2_RX0_IRQn);
+		HAL_NVIC_SetPriority(CAN2_RX1_IRQn, 0, 0);
+		HAL_NVIC_EnableIRQ(CAN2_RX1_IRQn);
 			
 
 	}
 	
-	void CAN1Interface::Open(BitrateType bitrate, bool isListenOnly)
+	void CAN2Interface::Open(BitrateType bitrate, bool isListenOnly)
 	{
 		if (bitrate == BitrateType::undefined)
 			return;
@@ -105,14 +105,14 @@ namespace Channels
 
 	}
 	
-	void CAN1Interface::UpdateState()
+	void CAN2Interface::UpdateState()
 	{
 		if (indicator != nullptr)
 			indicator->SetCanState(state);
 		GetChannelInfo::NotifyChanges(this->index, PushToUsbBuffer);
 	}
 	
-	void CAN1Interface::Close()
+	void CAN2Interface::Close()
 	{
 		if (HAL_CAN_Stop(&hcan) != HAL_OK)
 		{
@@ -127,14 +127,14 @@ namespace Channels
 
 	}
 	
-	void CAN1Interface::Transmit(CAN_TxHeaderTypeDef Header, uint8_t aData[])
+	void CAN2Interface::Transmit(CAN_TxHeaderTypeDef Header, uint8_t aData[])
 	{		
 		HAL_CAN_AddTxMessage(&hcan, &Header, aData, &txMailbox);
 		if (indicator != nullptr)
 			indicator->Transmitted();
 	}
 
-	void CAN1Interface::ReceiveHandler()
+	void CAN2Interface::ReceiveHandler()
 	{
 		uint8_t buf[8];
 		CAN_RxHeaderTypeDef RxHeader;

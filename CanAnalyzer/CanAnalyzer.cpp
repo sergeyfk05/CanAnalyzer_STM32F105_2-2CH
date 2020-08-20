@@ -7,9 +7,10 @@ int main(void)
 	SystemClock_Config();
 	
 	//HAL_Delay(5000);
-	indicators[0] = new Led2Indicator();
-	indicators[1] = new Led1Indicator();
-	CanChannels[0] = new Channels::CAN1Interface(0, indicators[0]);
+	indicators[0] = new Led1Indicator();
+	indicators[1] = new Led2Indicator();
+	CanChannels[0] = new Channels::CAN2Interface(0, indicators[0]);
+	CanChannels[1] = new Channels::CAN1Interface(1, indicators[1]);
 	
 
 	
@@ -37,6 +38,18 @@ extern "C" void TIM2_IRQHandler()
 	
 	if (indicators[1] != nullptr)
 		indicators[1]->PeriodicCallback();
+}
+extern "C" void CAN1_RX0_IRQHandler()
+{
+	CanChannels[1]->ReceiveHandler();
+}
+extern "C" void CAN2_RX1_IRQHandler()
+{
+	CanChannels[0]->ReceiveHandler();
+}
+extern "C" void CAN2_RX0_IRQHandler()
+{
+	CanChannels[0]->ReceiveHandler();
 }
 
 void SysTick_Handler(void)
@@ -84,7 +97,3 @@ void USBRecieveInfinityLoop(void)
 	command(data.Data, data.Size, &PushToUsbBuffer);
 }
 
-extern "C" void CAN1_RX0_IRQHandler()
-{
-	CanChannels[0]->ReceiveHandler();
-}

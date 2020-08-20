@@ -56,6 +56,7 @@
   </ImportGroup>
   <ItemGroup>
     <ClCompile Include="CAN1Interface.cpp" />
+    <ClCompile Include="CAN2Interface.cpp" />
     <ClCompile Include="CanAnalyzer.cpp" />
     <ClCompile Include="GetChannelInfo.cpp" />
     <ClCompile Include="CommandSelector.cpp" />
@@ -77,6 +78,7 @@
     <ClCompile Include="system_stm32f1xx.c" />
     <ClInclude Include="BitrateType.h" />
     <ClInclude Include="CAN1Interface.h" />
+    <ClInclude Include="CAN2Interface.h" />
     <ClInclude Include="CanAnalyzer.h" />
     <ClInclude Include="CANState.h" />
     <ClInclude Include="GetChannelInfo.h" />

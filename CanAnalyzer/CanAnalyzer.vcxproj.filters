@@ -618,6 +618,9 @@
     <ClCompile Include="Led2Indicator.cpp">
       <Filter>Source files\Models\Indicators</Filter>
     </ClCompile>
+    <ClCompile Include="CAN2Interface.cpp">
+      <Filter>Source files\Models\Channels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="USBPacketData.h">
@@ -679,6 +682,9 @@
     </ClInclude>
     <ClInclude Include="Led2Indicator.h">
       <Filter>Header files\Models\Indicators</Filter>
+    </ClInclude>
+    <ClInclude Include="CAN2Interface.h">
+      <Filter>Header files\Models\Channels</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
