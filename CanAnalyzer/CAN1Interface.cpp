@@ -72,7 +72,7 @@ namespace Channels
 		}
 			
 		
-		hcan.Init.Mode = isListenOnly ? CAN_MODE_LOOPBACK : CAN_MODE_NORMAL;
+		hcan.Init.Mode = isListenOnly ? CAN_MODE_SILENT : CAN_MODE_NORMAL;
 		
 		
 		if (!GetTimings(bitrate, &hcan.Init.Prescaler, &hcan.Init.SyncJumpWidth, &hcan.Init.TimeSeg1, &hcan.Init.TimeSeg2))

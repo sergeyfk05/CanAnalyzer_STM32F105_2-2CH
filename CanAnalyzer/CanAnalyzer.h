@@ -29,7 +29,6 @@ extern "C"
 	extern PCD_HandleTypeDef hpcd;
 	void TIM2_IRQHandler();
 	void CAN1_RX0_IRQHandler();
-	void CAN2_RX0_IRQHandler();
 	void CAN2_RX1_IRQHandler();
 	Indicators::IIndicator* indicators[CHANNELS_COUNT];
 

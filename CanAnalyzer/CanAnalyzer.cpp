@@ -47,10 +47,6 @@ extern "C" void CAN2_RX1_IRQHandler()
 {
 	CanChannels[0]->ReceiveHandler();
 }
-extern "C" void CAN2_RX0_IRQHandler()
-{
-	CanChannels[0]->ReceiveHandler();
-}
 
 void SysTick_Handler(void)
 {

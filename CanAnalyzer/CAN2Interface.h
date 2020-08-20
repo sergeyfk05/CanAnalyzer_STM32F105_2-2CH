@@ -29,7 +29,7 @@ namespace Channels
 		CAN_HandleTypeDef hcan;
 		CAN_FilterTypeDef canFilterConfig;
 		uint32_t txMailbox = CAN_TX_MAILBOX1;
-		uint32_t rxMailbox = CAN_RX_FIFO0;
+		uint32_t rxMailbox = CAN_RX_FIFO1;
 		IIndicator* indicator;
 		
 	};

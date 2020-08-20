@@ -40,7 +40,7 @@ namespace Channels
 		hcan.Init.TransmitFifoPriority = DISABLE;
 		
 		
-		canFilterConfig.FilterBank = 1;
+		canFilterConfig.FilterBank = 15;
 		canFilterConfig.FilterMode = CAN_FILTERMODE_IDMASK;
 		canFilterConfig.FilterScale = CAN_FILTERSCALE_32BIT;
 		canFilterConfig.FilterIdHigh = 0x0000;
@@ -72,7 +72,7 @@ namespace Channels
 		}
 			
 		
-		hcan.Init.Mode = isListenOnly ? CAN_MODE_LOOPBACK : CAN_MODE_NORMAL;
+		hcan.Init.Mode = isListenOnly ? CAN_MODE_SILENT : CAN_MODE_NORMAL;
 		
 		
 		if (!GetTimings(bitrate, &hcan.Init.Prescaler, &hcan.Init.SyncJumpWidth, &hcan.Init.TimeSeg1, &hcan.Init.TimeSeg2))

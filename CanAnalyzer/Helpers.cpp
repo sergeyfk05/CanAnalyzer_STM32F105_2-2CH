@@ -62,7 +62,7 @@ void SystemClock_Config(void)
 	htim2.Instance = TIM2;
 	htim2.Init.Prescaler = 47999;
 	htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-	htim2.Init.Period = 5;
+	htim2.Init.Period = 2;
 	htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
 	htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
 	HAL_TIM_Base_Init(&htim2);
