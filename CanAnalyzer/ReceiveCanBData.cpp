@@ -5,7 +5,7 @@ void ReceiveCanBData::Operate(uint8_t index, CAN_RxHeaderTypeDef RxHeader, uint8
 	if (index >= CanChannelsCount)
 		return;
 	
-	if (RxHeader.ExtId != CAN_ID_EXT)
+	if (RxHeader.IDE != CAN_ID_EXT)
 		return;
 	
 	Output result;

@@ -19,7 +19,7 @@ bool TransmitCanBData::Operate(uint8_t *Buf, uint8_t Len, void(*transmit)(uint8_
 		return false;
 	
 	CAN_TxHeaderTypeDef header;
-	header.ExtId = CAN_ID_EXT;
+	header.IDE = CAN_ID_EXT;
 	header.DLC = input->DLC;
 	header.ExtId = input->CanId;
 	

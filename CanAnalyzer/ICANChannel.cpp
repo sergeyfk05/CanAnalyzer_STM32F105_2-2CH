@@ -48,7 +48,7 @@ namespace Channels
 			*timeSeg2 = CAN_BS2_2TQ;
 			break;
 		case BitrateType::kpbs500:
-			*prescaler = 4;
+			*prescaler = 3;
 			*timeSeg1 = CAN_BS1_13TQ;
 			*timeSeg2 = CAN_BS2_2TQ;
 			break;

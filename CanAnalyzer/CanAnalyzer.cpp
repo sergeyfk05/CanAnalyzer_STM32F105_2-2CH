@@ -84,10 +84,7 @@ void USBRecieveInfinityLoop(void)
 	command(data.Data, data.Size, &PushToUsbBuffer);
 }
 
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
+extern "C" void CAN1_RX0_IRQHandler()
 {
-	//	if (hcan->Instance == CAN1)
-	//	{
-	//		CanChannels[0]->ReceiveHandler();
-	//	}
+	CanChannels[0]->ReceiveHandler();
 }

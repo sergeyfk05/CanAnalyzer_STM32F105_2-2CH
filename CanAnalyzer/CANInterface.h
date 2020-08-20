@@ -23,9 +23,9 @@ namespace Channels
 		void Close();
 		void Transmit(CAN_TxHeaderTypeDef Header, uint8_t aData[]);
 		void ReceiveHandler();
-		void UpdateState();
 		
 	private:
+		void UpdateState();
 		CAN_HandleTypeDef hcan;
 		CAN_FilterTypeDef canFilterConfig;
 		uint32_t mailbox = CAN_TX_MAILBOX0;

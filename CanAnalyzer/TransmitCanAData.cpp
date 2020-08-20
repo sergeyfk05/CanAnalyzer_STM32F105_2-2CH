@@ -19,7 +19,7 @@ bool TransmitCanAData::Operate(uint8_t *Buf, uint8_t Len, void(*transmit)(uint8_
 		return false;
 	
 	CAN_TxHeaderTypeDef header;
-	header.ExtId = CAN_ID_STD;
+	header.IDE = CAN_ID_STD;
 	header.DLC = input->DLC;
 	//header.DLC = 8;
 	header.RTR = CAN_RTR_DATA;

@@ -51,14 +51,12 @@ namespace Channels
 		canFilterConfig.FilterActivation = ENABLE;
 		canFilterConfig.SlaveStartFilterBank = 14;
 		
-//		HAL_CAN_Init(&hcan);		
-//		HAL_CAN_ConfigFilter(&hcan, &canFilterConfig);
-		//HAL_CAN_Start(&hcan);
+		HAL_NVIC_SetPriority(CAN1_RX0_IRQn, 0, 0);
+		HAL_NVIC_EnableIRQ(CAN1_RX0_IRQn);
+		HAL_NVIC_SetPriority(CAN1_RX1_IRQn, 0, 0);
+		HAL_NVIC_EnableIRQ(CAN1_RX1_IRQn);
 			
-			
-		//HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING);
-		//HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO1_MSG_PENDING);
-		//HAL_CAN_ActivateNotification(&hcan, CAN_IT_ERROR);
+
 	}
 	
 	void CAN1Interface::Open(BitrateType bitrate, bool isListenOnly)
@@ -69,9 +67,7 @@ namespace Channels
 		CANState targetState = isListenOnly ? CANState::OpenedListenOnly :  CANState::OpenedNormal;
 		if (this->bitrate == bitrate && this->state == targetState)
 		{
-			if (indicator != nullptr)
-				indicator->SetCanState(state);
-			GetChannelInfo::NotifyChanges(this->index, PushToUsbBuffer);
+			UpdateState();
 			return;
 		}
 			
@@ -84,33 +80,33 @@ namespace Channels
 		
 		if ((HAL_CAN_Init(&hcan) != HAL_OK))
 		{
-			if (indicator != nullptr)
-				indicator->SetCanState(state);
-			
-			GetChannelInfo::NotifyChanges(this->index, PushToUsbBuffer);
+			UpdateState();
 			return;
 		}
 		if ((HAL_CAN_ConfigFilter(&hcan, &canFilterConfig) != HAL_OK))
 		{
-			if (indicator != nullptr)
-				indicator->SetCanState(state);
-			
-			GetChannelInfo::NotifyChanges(this->index, PushToUsbBuffer);
+			UpdateState();
 			return;
 		}
 		if ((HAL_CAN_Start(&hcan) != HAL_OK))
 		{
-			if (indicator != nullptr)
-				indicator->SetCanState(state);
-			
-			GetChannelInfo::NotifyChanges(this->index, PushToUsbBuffer);
+			UpdateState();
 			return;
 		}
 		
 		this->bitrate = bitrate;
 		this->state = targetState;
 		
+		HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING);
+		HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO1_MSG_PENDING);
+		//HAL_CAN_ActivateNotification(&hcan, CAN_IT_ERROR);
 		
+		UpdateState();
+
+	}
+	
+	void CAN1Interface::UpdateState()
+	{
 		if (indicator != nullptr)
 			indicator->SetCanState(state);
 		GetChannelInfo::NotifyChanges(this->index, PushToUsbBuffer);
@@ -145,14 +141,14 @@ namespace Channels
 		if (HAL_CAN_GetRxMessage(&hcan, CAN_RX_FIFO0, &RxHeader, buf) != HAL_OK)
 			return;
 		
-		if (RxHeader.ExtId == CAN_ID_STD)
+		if (RxHeader.IDE == CAN_ID_STD)
 		{
 			ReceiveCanAData::Operate(this->index, RxHeader, buf, PushToUsbBuffer);
 			
 			if (indicator != nullptr)
 				indicator->Received();
 		}		
-		else if (RxHeader.ExtId == CAN_ID_EXT)
+		else if (RxHeader.IDE == CAN_ID_EXT)
 		{
 			ReceiveCanBData::Operate(this->index, RxHeader, buf, PushToUsbBuffer);
 			

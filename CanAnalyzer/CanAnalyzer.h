@@ -26,8 +26,8 @@ extern "C"
 	void OTG_FS_IRQHandler(void);
 	void OTG_HS_IRQHandler(void);
 	extern PCD_HandleTypeDef hpcd;
-	void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan);
 	void TIM2_IRQHandler();
+	void CAN1_RX0_IRQHandler();
 	Indicators::IIndicator* indicators[2];
 
 	
@@ -37,7 +37,6 @@ extern "C"
 
 void USBTransmitInfinityLoop(void);
 void USBRecieveInfinityLoop(void);
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan);
 
 
 
