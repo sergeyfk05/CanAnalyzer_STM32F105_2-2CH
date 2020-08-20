@@ -22,6 +22,6 @@ namespace ReceiveCanBData
 		uint8_t data[8];
 	};
 	
-	void Operate(uint8_t index, CAN_RxHeaderTypeDef RxHeader, uint8_t data[], void(*transmit)(uint8_t *Buf, uint8_t Len));
+	void Operate(uint8_t index, CAN_RxHeaderTypeDef RxHeader, uint32_t time, uint8_t data[], void(*transmit)(uint8_t *Buf, uint8_t Len));
 	
 }

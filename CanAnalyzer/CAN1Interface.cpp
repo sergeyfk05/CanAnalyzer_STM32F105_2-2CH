@@ -143,14 +143,14 @@ namespace Channels
 		
 		if (RxHeader.IDE == CAN_ID_STD)
 		{
-			ReceiveCanAData::Operate(this->index, RxHeader, buf, PushToUsbBuffer);
+			ReceiveCanAData::Operate(this->index, RxHeader, HAL_GetTick(), buf, PushToUsbBuffer);
 			
 			if (indicator != nullptr)
 				indicator->Received();
 		}		
 		else if (RxHeader.IDE == CAN_ID_EXT)
 		{
-			ReceiveCanBData::Operate(this->index, RxHeader, buf, PushToUsbBuffer);
+			ReceiveCanBData::Operate(this->index, RxHeader, HAL_GetTick(), buf, PushToUsbBuffer);
 			
 			if (indicator != nullptr)
 				indicator->Received();
