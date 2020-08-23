@@ -3,7 +3,7 @@
 #include <ICANChannel.h>
 #include <GetChannelInfo.h>
 #include <Helpers.h>
-#define ReceiveCanBData_COMMAND_ID 6
+#define ReceiveCanBData_COMMAND_ID 7
 
 
 

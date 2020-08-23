@@ -38,7 +38,7 @@
     <Connection xsi:type="com.sysprogs.terminal.connection.serial">
       <ComPortName>COM6</ComPortName>
       <AdvancedSettings>
-        <BaudRate>115200</BaudRate>
+        <BaudRate>256000</BaudRate>
         <DataBits>8</DataBits>
         <Parity>None</Parity>
         <StopBits>One</StopBits>
@@ -49,7 +49,7 @@
     <EchoTypedCharacters>false</EchoTypedCharacters>
     <ClearContentsWhenReconnecting>true</ClearContentsWhenReconnecting>
     <ReconnectAutomatically>false</ReconnectAutomatically>
-    <DisplayMode>ASCII</DisplayMode>
+    <DisplayMode>HEX</DisplayMode>
     <Colors>
       <Background>
         <Alpha>255</Alpha>
@@ -84,7 +84,7 @@
     </Colors>
     <HexSettings>
       <MaximumBytesPerLine>16</MaximumBytesPerLine>
-      <ShowTextView>true</ShowTextView>
+      <ShowTextView>false</ShowTextView>
       <BreaksAroundEcho>true</BreaksAroundEcho>
       <AutoSend>true</AutoSend>
       <SendAsHex>true</SendAsHex>

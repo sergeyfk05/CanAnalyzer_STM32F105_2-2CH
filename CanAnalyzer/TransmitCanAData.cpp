@@ -11,7 +11,7 @@ bool TransmitCanAData::Operate(uint8_t *Buf, uint8_t Len, void(*transmit)(uint8_
 	if (input->channelId >= CanChannelsCount)
 		return false;
 	
-	if (input->CanId > 0x7ff)
+	if (input->CanId > 0x7FF)
 		return false;
 	
 	
@@ -21,7 +21,6 @@ bool TransmitCanAData::Operate(uint8_t *Buf, uint8_t Len, void(*transmit)(uint8_
 	CAN_TxHeaderTypeDef header;
 	header.IDE = CAN_ID_STD;
 	header.DLC = input->DLC;
-	//header.DLC = 8;
 	header.RTR = CAN_RTR_DATA;
 	header.TransmitGlobalTime = DISABLE;
 	header.StdId = input->CanId;

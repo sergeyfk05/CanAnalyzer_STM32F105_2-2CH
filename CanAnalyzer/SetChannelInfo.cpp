@@ -36,6 +36,6 @@ bool SetChannelInfo::Operate(uint8_t *Buf, uint8_t Len, void(*transmit)(uint8_t 
 		break;
 	}
 	
-	GetChannelInfo::NotifyChanges(input->commandId, transmit);
+	GetChannelInfo::NotifyChanges(input->channelId, transmit);
 	
 }

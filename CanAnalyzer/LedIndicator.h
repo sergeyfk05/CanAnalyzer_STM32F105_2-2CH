@@ -4,7 +4,7 @@
 #include <CANState.h>
 #include <IIndicator.h>
 
-#define COUNTER_VALUE_TO_SWITCH 250
+#define COUNTER_VALUE_TO_SWITCH 500
 
 namespace Indicators
 {
