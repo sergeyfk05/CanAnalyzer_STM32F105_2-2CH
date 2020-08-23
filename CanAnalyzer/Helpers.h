@@ -4,8 +4,6 @@
 #include <ICANChannel.h>
 #define CHANNELS_COUNT 2
 
-#define DEBUG_BUFFER
-
 
 extern TIM_HandleTypeDef htim2;
 extern PacketQueue* RecieveUSBQueue;
@@ -16,9 +14,5 @@ void PushToUsbBuffer(uint8_t *Buf, uint8_t Len);
 void SystemClock_Config(void);
 void USBTransmitInfinityLoop(void);
 void USBRecieveInfinityLoop(void);
-
-#ifdef DEBUG_BUFFER
-				  
-#endif // DEBUG_BUFFER
 
 

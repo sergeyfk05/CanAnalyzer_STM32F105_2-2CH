@@ -23,7 +23,13 @@ int main(void)
 	while (true)
 	{		
 		USBTransmitInfinityLoop();
-		USBRecieveInfinityLoop();	
+		USBRecieveInfinityLoop();
+		
+#ifdef DEBUG_BUFFER
+		RecieveUSBQueueCount = RecieveUSBQueue->Size();
+		TransmitUSBQueueCount = TransmitUSBQueue->Size();
+#endif // DEBUG_BUFFER
+
 	}
 
 	

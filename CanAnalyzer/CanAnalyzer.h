@@ -11,6 +11,9 @@
 #include <Led2Indicator.h>
 
 
+//#define DEBUG_BUFFER
+
+
 using namespace Indicators;
 
 #ifdef __cplusplus
@@ -31,6 +34,11 @@ extern "C"
 	void CAN1_RX0_IRQHandler();
 	void CAN2_RX1_IRQHandler();
 	Indicators::IIndicator* indicators[CHANNELS_COUNT];
+	
+#ifdef DEBUG_BUFFER
+	uint32_t RecieveUSBQueueCount;
+	uint32_t TransmitUSBQueueCount;
+#endif // DEBUG_BUFFER
 
 	
 #ifdef __cplusplus
