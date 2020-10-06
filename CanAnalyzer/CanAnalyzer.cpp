@@ -96,6 +96,13 @@ void USBRecieveInfinityLoop(void)
 		
 	bool(*command)(uint8_t*, uint8_t, void(*)(uint8_t*, uint8_t));
 	command = SelectCommand(data.Data);
-	command(data.Data, data.Size, &PushToUsbBuffer);
+	
+	if (command != nullptr)
+		command(data.Data, data.Size, &PushToUsbBuffer);
+	else
+	{
+		uint8_t buf;
+		PushToUsbBuffer(&buf, 0);
+	}
 }
 
