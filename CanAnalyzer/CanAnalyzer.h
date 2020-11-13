@@ -50,9 +50,9 @@ void USBRecieveInfinityLoop(void);
 
 
 
-extern PacketQueue* RecieveUSBQueue;
-extern PacketQueue* TransmitUSBQueue;
+extern PacketQueue* recieve_USB_queue;
+extern PacketQueue* transmit_USB_queue;
 TIM_HandleTypeDef htim2;
 
-Channels::ICANChannel* CanChannels[CHANNELS_COUNT];
-uint8_t CanChannelsCount = CHANNELS_COUNT;
+Channels::ICANChannel* can_channels[CHANNELS_COUNT];
+uint8_t can_channels_count = CHANNELS_COUNT;

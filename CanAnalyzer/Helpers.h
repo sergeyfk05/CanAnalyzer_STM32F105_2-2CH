@@ -6,8 +6,8 @@
 
 
 extern TIM_HandleTypeDef htim2;
-extern PacketQueue* RecieveUSBQueue;
-extern PacketQueue* TransmitUSBQueue;
+extern PacketQueue* recieve_USB_queue;
+extern PacketQueue* transmit_USB_queue;
 
 void PushToUsbBuffer(uint8_t *Buf, uint8_t Len);
 

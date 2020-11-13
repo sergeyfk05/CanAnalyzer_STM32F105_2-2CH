@@ -7,8 +7,8 @@
 
 
 
-extern Channels::ICANChannel* CanChannels[CHANNELS_COUNT];
-extern uint8_t CanChannelsCount;
+extern Channels::ICANChannel* can_channels[CHANNELS_COUNT];
+extern uint8_t can_channels_count;
 
 namespace ReceiveCanBData
 {

@@ -69,8 +69,8 @@
   */
 
 
-PacketQueue* RecieveUSBQueue = new PacketQueue(256);
-PacketQueue* TransmitUSBQueue = new PacketQueue(256);
+PacketQueue* recieve_USB_queue = new PacketQueue(256);
+PacketQueue* transmit_USB_queue = new PacketQueue(256);
 
 static int8_t USBFS_Init     (void);
 static int8_t USBFS_DeInit   (void);
@@ -117,8 +117,8 @@ static uint8_t USB_Buffer[CDC_DATA_FS_OUT_PACKET_SIZE];
 
 static int8_t USBFS_Init(void)
 {
-	RecieveUSBQueue->Reset();
-	TransmitUSBQueue->Reset();
+	recieve_USB_queue->Reset();
+	transmit_USB_queue->Reset();
 	USBD_CDC_SetRxBuffer(&USBD_Device, USB_Buffer);
 	return (0);
 }
@@ -228,7 +228,7 @@ static int8_t USBFS_Receive(uint8_t* Buf, uint32_t *Len)
 	USBPacketData data;
 	data.Size = *Len;
 	memcpy(data.Data, Buf, data.Size);
-	RecieveUSBQueue->Push(data);
+	recieve_USB_queue->Push(data);
 	
 	USBD_CDC_ReceivePacket(&USBD_Device);
 	return (0);

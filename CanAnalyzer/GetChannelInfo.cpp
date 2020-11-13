@@ -7,15 +7,15 @@ bool GetChannelInfo::Operate(uint8_t *Buf, uint8_t Len, void(*transmit)(uint8_t 
 	
 	Input* input = (Input*)Buf;
 	
-	if (input->channelId >= CanChannelsCount)
+	if (input->channelId >= can_channels_count)
 		return false;
 	
 	
 	Output result;
 	result.commandId = GetChannelInfo_COMMAND_ID;
 	result.channelId = input->channelId;
-	result.status = CanChannels[input->channelId]->GetState();
-	result.bitrate = CanChannels[input->channelId]->GetBitrateType();
+	result.status = can_channels[input->channelId]->GetState();
+	result.bitrate = can_channels[input->channelId]->GetBitrateType();
 	result.bitrate = 8;
 	
 	if (*transmit != nullptr)
@@ -26,14 +26,14 @@ bool GetChannelInfo::Operate(uint8_t *Buf, uint8_t Len, void(*transmit)(uint8_t 
 
 void GetChannelInfo::NotifyChanges(uint8_t index, void(*transmit)(uint8_t *Buf, uint8_t Len))
 {
-	if (index >= CanChannelsCount)
+	if (index >= can_channels_count)
 		return;
 	
 	Output result;
 	result.commandId = GetChannelInfo_COMMAND_ID;
 	result.channelId = index;
-	result.status = CanChannels[index]->GetState();
-	result.bitrate = CanChannels[index]->GetBitrateType();
+	result.status = can_channels[index]->GetState();
+	result.bitrate = can_channels[index]->GetBitrateType();
 	
 	if (*transmit != nullptr)
 		(*transmit)((uint8_t*)&result, sizeof(Output));

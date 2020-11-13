@@ -8,7 +8,7 @@ bool TransmitCanBData::Operate(uint8_t *Buf, uint8_t Len, void(*transmit)(uint8_
 	
 	Input* input = (Input*)Buf;
 	
-	if (input->channelId >= CanChannelsCount)
+	if (input->channelId >= can_channels_count)
 		return false;
 	
 	if (input->CanId > 0x1ffffff)
@@ -23,5 +23,5 @@ bool TransmitCanBData::Operate(uint8_t *Buf, uint8_t Len, void(*transmit)(uint8_
 	header.DLC = input->DLC;
 	header.ExtId = input->CanId;
 	
-	CanChannels[input->channelId]->Transmit(header, input->data);
+	can_channels[input->channelId]->Transmit(header, input->data);
 }

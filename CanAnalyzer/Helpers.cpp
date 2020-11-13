@@ -6,7 +6,7 @@ void PushToUsbBuffer(uint8_t *Buf, uint8_t Len)
 	USBPacketData data;
 	data.Size = Len;
 	memcpy(data.Data, Buf, Len);
-	TransmitUSBQueue->Push(data);
+	transmit_USB_queue->Push(data);
 }
 
 void SystemClock_Config(void)

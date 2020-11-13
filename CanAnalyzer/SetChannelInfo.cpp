@@ -9,7 +9,7 @@ bool SetChannelInfo::Operate(uint8_t *Buf, uint8_t Len, void(*transmit)(uint8_t 
 	
 	Input* input = (Input*)Buf;
 	
-	if (input->channelId >= CanChannelsCount)
+	if (input->channelId >= can_channels_count)
 		return false;
 	
 	if ((input->bitrate < BITRATETYPE_MIN_VALUE) || (input->bitrate > BITRATETYPE_MAX_VALUE) || (input->status < CANSTATE_MIN_VALUE) || (input->status > CANSTATE_MAX_VALUE))
@@ -19,7 +19,7 @@ bool SetChannelInfo::Operate(uint8_t *Buf, uint8_t Len, void(*transmit)(uint8_t 
 	}
 	
 	
-	ICANChannel* ch = CanChannels[input->channelId];
+	ICANChannel* ch = can_channels[input->channelId];
 	
 	switch((CANState)input->status)
 	{

@@ -7,10 +7,14 @@ int main(void)
 	SystemClock_Config();
 	
 	//HAL_Delay(5000);
-	indicators[0] = new Led1Indicator();
-	indicators[1] = new Led2Indicator();
-	CanChannels[0] = new Channels::CAN2Interface(0, indicators[0]);
-	CanChannels[1] = new Channels::CAN1Interface(1, indicators[1]);
+	Led1Indicator led_indicator_0_ = Led1Indicator();
+	Led2Indicator led_indicator_1_ = Led2Indicator();
+	indicators[0] = &led_indicator_0_;
+	indicators[1] = &led_indicator_1_;
+	Channels::CAN1Interface channel_0_(0, indicators[0]);
+	Channels::CAN2Interface channel_1_(1, indicators[1]);
+	can_channels[0] = &channel_0_;
+	can_channels[1] = &channel_1_;
 	
 
 	
@@ -47,11 +51,11 @@ extern "C" void TIM2_IRQHandler()
 }
 extern "C" void CAN1_RX0_IRQHandler()
 {
-	CanChannels[1]->ReceiveHandler();
+	can_channels[1]->ReceiveHandler();
 }
 extern "C" void CAN2_RX1_IRQHandler()
 {
-	CanChannels[0]->ReceiveHandler();
+	can_channels[0]->ReceiveHandler();
 }
 
 void SysTick_Handler(void)
@@ -68,7 +72,7 @@ void OTG_FS_IRQHandler(void)
 void USBTransmitInfinityLoop(void)
 {
 	bool isOk;
-	USBPacketData data = TransmitUSBQueue->Pop(&isOk);
+	USBPacketData data = transmit_USB_queue->Pop(&isOk);
 			
 	if (!isOk)
 		return;
@@ -89,7 +93,7 @@ void USBTransmitInfinityLoop(void)
 void USBRecieveInfinityLoop(void)
 {
 	bool isOk;
-	USBPacketData data = RecieveUSBQueue->Pop(&isOk);
+	USBPacketData data = recieve_USB_queue->Pop(&isOk);
 			
 	if (!isOk)
 		return;
