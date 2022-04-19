@@ -10,15 +10,21 @@
     <MainSourceDirectory>$(ProjectDir)</MainSourceDirectory>
     <ExportAdvancedBuildVariables>false</ExportAdvancedBuildVariables>
     <EmbeddedProfileFile>stm32.xml</EmbeddedProfileFile>
+    <MemoryListSource>DeviceDefinition</MemoryListSource>
   </Project>
   <Build xsi:type="com.visualgdb.build.msbuild">
+    <BuildLogMode xsi:nil="true" />
     <ToolchainID>
       <Version>
         <Revision>0</Revision>
       </Version>
     </ToolchainID>
     <ProjectFile>CanAnalyzer.vcxproj</ProjectFile>
-    <ParallelJobCount>0</ParallelJobCount>
+    <RemoteBuildEnvironment>
+      <Records />
+      <EnvironmentSetupFiles />
+    </RemoteBuildEnvironment>
+    <ParallelJobCount>1</ParallelJobCount>
     <SuppressDirectoryChangeMessages>true</SuppressDirectoryChangeMessages>
   </Build>
   <CustomBuild>
@@ -147,21 +153,33 @@
       <EnableAsyncExecutionMode>false</EnableAsyncExecutionMode>
       <EnableNonStopMode>false</EnableNonStopMode>
       <MaxBreakpointLimit>0</MaxBreakpointLimit>
+      <EnableVerboseMode>true</EnableVerboseMode>
     </AdditionalGDBSettings>
     <DebugMethod>
-      <ID>jlink-jtag</ID>
-      <InterfaceID>com.sysprogs.debug.jlink.jlinksw</InterfaceID>
-      <InterfaceSerialNumber>000583649347</InterfaceSerialNumber>
-      <Configuration xsi:type="com.visualgdb.edp.segger.settings">
-        <CommandLine>-select USB -device $$SYS:MCU_ID$$ -speed 1000 -if SWD</CommandLine>
+      <ID>com.sysprogs.arm.openocd</ID>
+      <InterfaceID>stlink-v2</InterfaceID>
+      <InterfaceSerialNumber>5&amp;1BDE3AAF&amp;0&amp;4</InterfaceSerialNumber>
+      <Configuration xsi:type="com.visualgdb.edp.openocd.settings">
+        <CommandLine>-f interface/stlink-v2.cfg -f target/stm32f1x.cfg -c init</CommandLine>
+        <ExtraParameters>
+          <Frequency xsi:nil="true" />
+          <BoostedFrequency xsi:nil="true" />
+          <ConnectUnderReset>false</ConnectUnderReset>
+        </ExtraParameters>
+        <LoadProgressGUIThreshold>131072</LoadProgressGUIThreshold>
         <ProgramMode>Enabled</ProgramMode>
         <StartupCommands>
+          <string>set remotetimeout 60</string>
           <string>target remote :$$SYS:GDB_PORT$$</string>
+          <string>mon halt</string>
+          <string>mon reset init</string>
           <string>load</string>
         </StartupCommands>
-        <UseUnreliableLiveMemoryEngine>false</UseUnreliableLiveMemoryEngine>
         <ProgramFLASHUsingExternalTool>false</ProgramFLASHUsingExternalTool>
         <PreferredGDBPort>0</PreferredGDBPort>
+        <PreferredTelnetPort>0</PreferredTelnetPort>
+        <AlwaysPassSerialNumber>false</AlwaysPassSerialNumber>
+        <SelectedCoreIndex xsi:nil="true" />
       </Configuration>
     </DebugMethod>
     <AutoDetectRTOS>true</AutoDetectRTOS>

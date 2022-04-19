@@ -11,7 +11,7 @@ bool TransmitCanBData::Operate(uint8_t *Buf, uint8_t Len, void(*transmit)(uint8_
 	if (input->channelId >= can_channels_count)
 		return false;
 	
-	if (input->CanId > 0x1ffffff)
+	if (input->CanId > 0x1fffffff)
 		return false;
 	
 	

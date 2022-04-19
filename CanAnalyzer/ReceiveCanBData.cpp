@@ -13,6 +13,7 @@ void ReceiveCanBData::Operate(uint8_t index, CAN_RxHeaderTypeDef RxHeader, uint3
 	result.commandId = ReceiveCanBData_COMMAND_ID;
 	result.CanId = RxHeader.ExtId;
 	result.DLC = RxHeader.DLC;
+	result.Time = time;
 	memcpy(result.data, data, RxHeader.DLC);
 	
 	if (*transmit != nullptr)

@@ -51,14 +51,13 @@ extern "C" void TIM2_IRQHandler()
 }
 extern "C" void CAN1_RX0_IRQHandler()
 {
-	can_channels[1]->ReceiveHandler();
+	can_channels[0]->ReceiveHandler();
 }
 extern "C" void CAN2_RX1_IRQHandler()
 {
-	can_channels[0]->ReceiveHandler();
+	can_channels[1]->ReceiveHandler();
 }
-
-void SysTick_Handler(void)
+extern "C" void SysTick_Handler(void)
 {
 	HAL_IncTick();
 	HAL_SYSTICK_IRQHandler();
